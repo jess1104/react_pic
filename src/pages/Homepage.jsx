@@ -4,11 +4,12 @@ import Picture from '../components/Picture';
 
 
 const Homepage = () => {
-  // const[input, setInput] = useState("");
+  const[input, setInput] = useState("");
   let [data, setData] = useState(null);
   const authKey = '563492ad6f91700001000001bc5c0d405e064cf5a42a622ef43072ab';
   const initialURL = 'https://api.pexels.com/v1/curated?page=1&per_page=15';
-  const search = async() => {
+  const searchURL = `https://api.pexels.com/v1/search?query=${input}&per_page=15`;
+  const search = async(url) => {
     // 1.用.then方式
     // await fetch(initialURL, {
     //   method: "GET",
@@ -21,7 +22,7 @@ const Homepage = () => {
     //   setData(data.photos);
     // });
     // 2.用await
-    const dataFetch = await fetch(initialURL,{
+    const dataFetch = await fetch(url,{
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -34,14 +35,14 @@ const Homepage = () => {
 
   // 像 vue create hook
   useEffect(() => {
-    search();
+    search(initialURL);
   },[]);
 
-  // const searchURL = `https://api.pexels.com/v1/search?query=${input}&per_page=1`
+  
   return (
     <div style={{ minHeight: "100vh" }}>
       {/* <元件 前面為內部元件fn={後面為本身元件fn} /> */}
-      <Search searchPic = {search}></Search>
+      <Search searchPic = {() => search(searchURL)} setInput = { setInput }></Search>
       <div className="pictures">
         {
           data && 
