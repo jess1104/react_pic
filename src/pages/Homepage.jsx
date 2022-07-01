@@ -46,7 +46,7 @@ const Homepage = () => {
       <div className="pictures">
         {
           data && 
-            data.map(d => <Picture data = { d }/>)
+            data.map(d => <Picture key={d.id}  data = { d }/>)
         }
       </div>
     </div>

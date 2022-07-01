@@ -12,7 +12,7 @@ function App() {
       {/* 用switch包住要切換的頁面 */}
       <Switch>
         {/* Route包住 */}
-        <Route path='/' exact>
+        <Route path='/react_pic/' exact>
           <Homepage />
         </Route>
         <Route path='/about' exact>
